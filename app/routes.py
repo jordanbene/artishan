@@ -1,6 +1,8 @@
+from flask.templating import Flask, render_template
 from app import app
 
 @app.route('/')
 @app.route('/index')
+@app.route('/home')
 def index():
-    return "Hello from Flask!"
+    return render_template('index.html', title="Test")
