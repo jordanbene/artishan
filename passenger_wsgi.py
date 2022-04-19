@@ -9,4 +9,4 @@ application = Flask(__name__)
 
 @application.route('/')
 def index():
-    return 'Passenger test'
+    return 'Passenger 1'
