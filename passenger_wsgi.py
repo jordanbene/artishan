@@ -7,7 +7,7 @@ sys.path.append(os.getcwd())
 from flask import Flask
 from app import appmain as application
 
-application = Flask(__name__)
+#application = Flask(__name__)
 
 @application.route('/index')
 @application.route('/home')
