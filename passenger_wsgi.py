@@ -8,9 +8,9 @@ sys.path.append(os.getcwd())
 
 from flask import Flask
 from app import appmain
-#from appmain import application
+from app.appmain import application as application
 
-application = appmain.application
+#application = appmain.application
 
 #application = Flask(__name__)
 
