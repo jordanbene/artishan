@@ -14,8 +14,4 @@ from app.appmain import application as application
 
 #application = Flask(__name__)
 
-@application.route('/index')
-@application.route('/home')
-@application.route('/')
-def index():
-    return 'Passenger WSGI'
+
