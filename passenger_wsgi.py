@@ -7,11 +7,15 @@ if sys.executable != INTERP:
 sys.path.append(os.getcwd())
 
 from flask import Flask
-from app import appmain
-from app.appmain import application as application
+from app import app
+#from app.appmain import application as application
 
-#application = appmain.application
+application = app
 
 #application = Flask(__name__)
 
-
+@application.route('/index')
+@application.route('/home')
+@application.route('/')
+def index():
+    return 'Passenger WSGI'
