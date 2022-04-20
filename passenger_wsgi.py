@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys, os
 
 
@@ -8,5 +9,5 @@ sys.path.append(os.getcwd())
 
 
 sys.path.append('app')
-from app import appmain as application
+from appmain import app as application
  
