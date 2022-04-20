@@ -9,5 +9,5 @@ sys.path.append(os.getcwd())
 
 
 sys.path.append('app')
-from appmain import app as application
+from app.appmain import app as application
  
