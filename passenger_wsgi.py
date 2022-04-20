@@ -5,7 +5,7 @@ if sys.executable != INTERP:
         os.execl(INTERP, INTERP, *sys.argv)
 sys.path.append(os.getcwd())
 
-#from flask import Flask
+from flask import Flask
 
 sys.path.append('app')
 #from app.appmain import app as application
