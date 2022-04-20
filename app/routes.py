@@ -1,5 +1,5 @@
 from flask import Flask
-from flask.templating render_template
+from flask.templating import render_template
 from app import app
 
 @app.route('/', methods=['GET', 'POST'])
