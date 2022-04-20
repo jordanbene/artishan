@@ -9,11 +9,7 @@ def index():
 
     #return render_template('index.html', title="Test")
 
-@app.errorhandler(Exception)
-def handle_exception(e):
-    # pass through HTTP errors. You wouldn't want to handle these generically.
-    if isinstance(e, HTTPException):
-        return e
-
-    # now you're handling non-HTTP exceptions only
-    return render_template("500_generic.html", e=e), 500
+@app.errorhandler(500)
+def internal_server_error(error):
+    # This may pass system errors you do not wish users to see
+    return render_template('error.html', error_info=error.args)
