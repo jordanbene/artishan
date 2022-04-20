@@ -8,4 +8,7 @@ sys.path.append(os.getcwd())
 #from flask import Flask
 
 sys.path.append('app')
-from app import appmain as application
+from app.appmain import app as application
+ 
+if __name__ == '__main__':
+    application.run(debug=False)
