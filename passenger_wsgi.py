@@ -11,5 +11,3 @@ sys.path.append('app')
 #from app.appmain import app as application
 application = Flask(__name__)
  
-if __name__ == '__main__':
-    application.run(debug=False)
