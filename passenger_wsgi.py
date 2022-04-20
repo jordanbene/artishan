@@ -11,3 +11,6 @@ sys.path.append(os.getcwd())
 sys.path.append('app')
 from app.appmain import app as application
  
+x = open(os.path.expanduser('~/log.log'), 'w')
+x.write(repr(sys.argv))
+x.close()
