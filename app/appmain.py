@@ -5,9 +5,9 @@ from app import app as app
 @app.route('/')
 def index():
     print("success")
-    #return 'appmain'
+    return 'appmain'
 
-    return render_template('index.html', title="Test")
+    #return render_template('index.html', title="Test")
 
 @app.errorhandler(Exception)
 def handle_exception(e):
