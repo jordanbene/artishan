@@ -1,4 +1,5 @@
-from flask.templating import Flask, render_template
+from flask import Flask
+from flask.templating render_template
 from werkzeug.exceptions import HTTPException
 from app import app as app
 
