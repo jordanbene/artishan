@@ -10,9 +10,5 @@ sys.path.append(os.getcwd())
 from flask import Flask
 
 sys.path.append('app')
-#from app.appmain import app as application
-application = Flask(__name__)
+from app import appmain as application
  
-@app.route('/home')
-def index():
-    return render_template('index.html', title="Test")
