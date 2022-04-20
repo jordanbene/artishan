@@ -6,7 +6,7 @@ from app import app as app
 @app.route('/home')
 def index():
     print("success")
-    return 'appmain'
+    #return 'appmain'
 
-    #return render_template('index.html', title="Test")
+    return render_template('index.html', title="Test")
 
