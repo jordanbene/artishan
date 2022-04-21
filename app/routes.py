@@ -5,9 +5,13 @@ from app import app
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    #print("routes accessed")
-    app.logger.warning("Routes Accessed Success")
+    #app.logger.warning("Routes Accessed Success")
+    return render_template('index.html', title="Artishan")
 
-    return render_template('index.html', title="Test Title From Routes")
-    #return print("routes accessed")
+@app.route('/generate', methods=['GET', 'POST'])
+def generatebutton():
 
+@app.errorhandler(500)
+def internal_server_error(error):
+    # This may pass system errors you do not wish users to see
+    return render_template('error.html', error_info=error.args)
