@@ -8,7 +8,7 @@ from app import app as app
 def main():
 
     print("app main accessed")
-    return render_template('index.html', title="Test Title From App Main")
+    return render_template('/static/index.html', title="Test Title From App Main")
     #return render_template('index.html', title="Test")
 
 @app.errorhandler(500)
