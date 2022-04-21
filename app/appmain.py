@@ -7,7 +7,7 @@ from app import app as app
 @app.route('/')
 def main():
 
-    image = glidemodel.showimages();
+    model = createmodel
 
     #return render_template('index.html', title="Test")
     return print("success")

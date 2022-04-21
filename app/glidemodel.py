@@ -91,7 +91,7 @@ def model_fn(x_t, ts, **kwargs):
 # Sample from the base model.
 def sample_model():
     model.del_cache()
-    global samples = diffusion.p_sample_loop(
+    samples = diffusion.p_sample_loop(
         model_fn,
         (full_batch_size, 3, options["image_size"], options["image_size"]),
         device=device,
