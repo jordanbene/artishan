@@ -101,7 +101,6 @@ def sample_model():
         cond_fn=None,
     )[:batch_size]
     model.del_cache()
-
-# Show the output
-def showimages():
     show_images(samples)
+
+
