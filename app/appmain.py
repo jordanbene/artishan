@@ -5,7 +5,7 @@ from werkzeug.exceptions import HTTPException
 from app import app as app
 
 @app.route('/')
-def index():
+def main():
 
     print("app main accessed")
     return render_template('/static/index.html', title="Artishan")
