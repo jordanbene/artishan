@@ -12,12 +12,14 @@ from glide_text2im.model_creation import (
 # This notebook supports both CPU and GPU.
 # On CPU, generating one sample may take on the order of 20 minutes.
 # On a GPU, it should be under a minute.
-def createmodel():
-    has_cuda = th.cuda.is_available()
-    device = th.device('cpu' if not has_cuda else 'cuda')
+ has_cuda = th.cuda.is_available()
+ device = th.device('cpu' if not has_cuda else 'cuda')
+options = model_and_diffusion_defaults()
+options_up = model_and_diffusion_defaults_upsampler()
 
+def createmodel():
+   
     # Create base model.
-    options = model_and_diffusion_defaults()
     options['use_fp16'] = has_cuda
     options['timestep_respacing'] = '100' # use 100 diffusion steps for fast sampling
     model, diffusion = create_model_and_diffusion(**options)
@@ -29,7 +31,6 @@ def createmodel():
     print('total base parameters', sum(x.numel() for x in model.parameters()))
 
 # Create upsampler model.
-options_up = model_and_diffusion_defaults_upsampler()
 options_up['use_fp16'] = has_cuda
 options_up['timestep_respacing'] = 'fast27' # use 27 diffusion steps for very fast sampling
 model_up, diffusion_up = create_model_and_diffusion(**options_up)
