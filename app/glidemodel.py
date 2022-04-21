@@ -16,12 +16,11 @@ has_cuda = th.cuda.is_available()
 device = th.device('cpu' if not has_cuda else 'cuda')
 options = model_and_diffusion_defaults()
 options_up = model_and_diffusion_defaults_upsampler()
-samples
 def createmodel():
    
     # Create base model.
     options['use_fp16'] = has_cuda
-    options['timestep_respacing'] = '100' # use 100 diffusion steps for fast sampling
+    options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
     model, diffusion = create_model_and_diffusion(**options)
     model.eval()
     if has_cuda:
@@ -37,6 +36,7 @@ def show_images(batch: th.Tensor):
     scaled = ((batch + 1)*127.5).round().clamp(0,255).to(th.uint8).cpu()
     reshaped = scaled.permute(2, 0, 3, 1).reshape([batch.shape[2], -1, 3])
     display(Image.fromarray(reshaped.numpy())) #change to json image?
+
 def requestimage():
     # Sampling parameters
     prompt = "an oil painting of a corgi"
