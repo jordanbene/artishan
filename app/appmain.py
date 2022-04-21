@@ -6,11 +6,11 @@ from app import app as app
 
 @app.route('/')
 def main():
-    print("success")
 
     model = glidemodel.model
 
     #return render_template('index.html', title="Test")
+    return print("success")
 
 @app.errorhandler(500)
 def internal_server_error(error):
