@@ -6,7 +6,7 @@ from app import app
 @app.route('/', methods=['GET', 'POST'])
 def index():
     #app.logger.warning("Routes Accessed Success")
-    return render_template('index.html', title="Artishan")
+    return render_template('template.html', title="Artishan")
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generatebutton():
