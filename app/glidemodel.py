@@ -16,12 +16,18 @@ has_cuda = th.cuda.is_available()
 device = th.device('cpu' if not has_cuda else 'cuda')
 options = model_and_diffusion_defaults()
 options_up = model_and_diffusion_defaults_upsampler()
+model, diffusion = create_model_and_diffusion(**options)
+batch_size = 1
+
+guidance_scale = 3.0
+upsample_temp = 0.1
+full_batch_size = batch_size * 2
+
 def createmodel():
    
     # Create base model.
     options['use_fp16'] = has_cuda
     options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
-    model, diffusion = create_model_and_diffusion(**options)
     model.eval()
     if has_cuda:
         model.convert_to_fp16()
@@ -40,12 +46,9 @@ def show_images(batch: th.Tensor):
 def requestimage():
     # Sampling parameters
     prompt = "an oil painting of a corgi"
-    batch_size = 1
-    guidance_scale = 3.0
 
     # Tune this parameter to control the sharpness of 256x256 images.
     # A value of 1.0 is sharper, but sometimes results in grainy artifacts.
-    upsample_temp = 0.1
 
     ##############################
     # Sample from the base model #
@@ -58,7 +61,7 @@ def requestimage():
     )
 
     # Create the classifier-free guidance tokens (empty)
-    full_batch_size = batch_size * 2
+    #full_batch_size = batch_size * 2
     uncond_tokens, uncond_mask = model.tokenizer.padded_tokens_and_mask(
         [], options['text_ctx']
     )
@@ -75,7 +78,7 @@ def requestimage():
         ),
     )
 
-    sample_model()
+    sample_model(model_kwargs)
 
 # Create a classifier-free guidance sampling function
 def model_fn(x_t, ts, **kwargs):
@@ -89,7 +92,7 @@ def model_fn(x_t, ts, **kwargs):
     return th.cat([eps, rest], dim=1)
 
 # Sample from the base model.
-def sample_model():
+def sample_model(kwargs):
     model.del_cache()
     samples = diffusion.p_sample_loop(
         model_fn,
@@ -97,7 +100,7 @@ def sample_model():
         device=device,
         clip_denoised=True,
         progress=True,
-        model_kwargs=model_kwargs,
+        model_kwargs=kwargs,
         cond_fn=None,
     )[:batch_size]
     model.del_cache()
