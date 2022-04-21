@@ -1,14 +1,16 @@
 from flask import Flask
 from flask import render_template
+import glidemodel
 from werkzeug.exceptions import HTTPException
 from app import app as app
 
 @app.route('/')
 def main():
     print("success")
-    return 'appmain'
 
-    #return render_template('index.html', title="Test")
+    model = glidemodel.model
+
+    return render_template('index.html', title="Test")
 
 @app.errorhandler(500)
 def internal_server_error(error):
