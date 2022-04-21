@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, logging
 from flask import render_template
 import sys, os
 import glidemodel
@@ -7,8 +7,8 @@ from app import app as app
 
 @app.route('/')
 def main():
-
-    print("app main accessed", file=sys.stderr)
+    app.logger.warning("App Main Accessed Success")
+    print("app main accessed")
     return render_template('/static/index.html', title="Artishan")
     #return render_template('index.html', title="Test")
 
