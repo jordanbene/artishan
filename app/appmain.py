@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import sys, os
 import glidemodel
 from werkzeug.exceptions import HTTPException
 from app import app as app
@@ -7,7 +8,7 @@ from app import app as app
 @app.route('/')
 def main():
 
-    print("app main accessed")
+    print("app main accessed", file=sys.stderr)
     return render_template('/static/index.html', title="Artishan")
     #return render_template('index.html', title="Test")
 
