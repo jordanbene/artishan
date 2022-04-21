@@ -11,6 +11,8 @@ def index():
 @app.route('/generate', methods=['GET', 'POST'])
 def generatebutton():
 
+    return 'generate'
+
 @app.errorhandler(500)
 def internal_server_error(error):
     # This may pass system errors you do not wish users to see
