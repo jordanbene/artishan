@@ -7,7 +7,7 @@ from app import app as app
 @app.route('/')
 def main():
 
-    model = glidemodel.model
+    #model = glidemodel.model
 
     #return render_template('index.html', title="Test")
     return print("success")
