@@ -7,10 +7,9 @@ from app import app as app
 @app.route('/')
 def main():
 
-    
-
+    print("app main accessed")
+    return render_template('index.html', title="Test Title From App Main")
     #return render_template('index.html', title="Test")
-    return print("app main accessed")
 
 @app.errorhandler(500)
 def internal_server_error(error):
