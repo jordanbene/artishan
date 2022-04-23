@@ -10,7 +10,7 @@
         <h3>Generate</h3>
         <div id="mainimage"> <img src="{{ url_for('static//images', filename='default_image.png') }}" id="myimg" name="img" /></div>
 
-        <input name="inputtext">
+        <input type ="text" id ="inputtext" name="inputtext">
 
 
         <a href='' id="mybutton"><button class='btn btn-default'>Generate</button></a>
@@ -31,10 +31,12 @@
                     $("#mybutton").on("click", function () {
                         //alert('MyButton Clicked');
                         event.preventDefault()
+                        var value = $(inputtext).val();
+
                         $.ajax({
                             type: 'GET',
                             url: '/generateimage',
-                            dataType: 'text',
+                            dataType: JSON.stringify({ value }),
                             success: function (text) {
                                 text = JSON.parse(text);
                                 $('#myimg').attr('src', text);

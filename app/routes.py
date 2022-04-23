@@ -21,14 +21,14 @@ def index():
 def generatebutton():
     if flask.request.method == "GET":
        #data = request.get_data()
-       #text = json.dumps( request.form['inputtext'] )
-       text =  request.form['inputtext']
+       #text = request.get_json(data)
+       text = json.dumps( data )
 
        app.logger.warning("generate image data: " + text)
        image_path = IMAGES_FOLDER + "\\" 
 
 
-       image_path = image_path + "output_image"
+       image_path = image_path + "default_image"
        return render_template('template.html', data = image_path)
     return render_template('template.html', title="Artishan")
 
