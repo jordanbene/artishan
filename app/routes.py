@@ -12,13 +12,13 @@ def index():
 
 @app.route('/generateimage', methods=['GET', 'POST'])
 def generatebutton():
-    if flask.request.method == "GET":
-       
-       imgname = ""
-       data = imgname
+    if flask.request.method == "POST":
+       data = request.get_data()
+       app.logger.warning("generate image data: " + data)
+       imgname = "name"
+       #data = jsonify( imgname )
 
-
-       #return jsonify(imgname)
+       return jsonify(imgname)
     return render_template('template.html', title="Artishan")
 
 def serve_pil_image(pil_img):
