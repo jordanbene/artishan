@@ -44,6 +44,7 @@ def show_images(batch: th.Tensor):
     display(Image.fromarray(reshaped.numpy())) #change to json image?
 
 def requestimage():
+    createmodel()
     # Sampling parameters
     prompt = "an oil painting of a corgi"
 

@@ -1,8 +1,56 @@
 {% extends "index.html" %}
 {% block content %}
 
-<h3> Test Template </h3>
+<h3> NFT Generator </h3>
 
+<body>
+    <div class='container'>
+
+
+        <h3>Generate</h3>
+        <a href='' id="mybutton"><button class='btn btn-default'>GENERATE</button></a>
+
+
+    </div>
+</body>
+
+
+<head>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+                $(document).ready(function () {
+                    //initialize after page load
+
+                    $("#mybutton").on("click", function () {
+                        //alert('MyButton Clicked');
+                        event.preventDefault()
+                        $.ajax({
+                            type: 'POST',
+                            url: '/generateimage',
+                            dataType: 'text',
+                            success: function (text) {
+                                //alert('MyButton COMPLETE');
+                                text = JSON.parse(text);
+                                console.log("IMAGE GET REQUEST COMPLETE " + text )
+
+                                $('#myimg').attr('src', text);
+                                $('#collectionslist').attr('src', text)
+                            },
+                            error: function (xhr) {
+                                alert('MyButton FAIL');
+                                console.log("ERROR")
+
+                                //Do Something to handle error
+                            }
+                        });
+                    });
+                });
+
+    </script>
+
+</head>
 {% endblock %}
 
 {% block sidebar %}
