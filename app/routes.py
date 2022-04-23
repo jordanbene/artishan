@@ -29,7 +29,7 @@ def generatebutton():
 
 
        image_path = image_path + "default_image"
-       return render_template('template.html', data = image_path)
+       return jsonify(image_path)
     return render_template('template.html', title="Artishan")
 
 def serve_pil_image(pil_img):
