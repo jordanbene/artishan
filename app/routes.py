@@ -1,3 +1,5 @@
+
+from PIL import Image
 import flask
 from flask import Flask, render_template, send_file, url_for, jsonify, request, Request, Response, make_response, send_from_directory, flash
 from flask import render_template
@@ -5,6 +7,10 @@ from logging import WARNING, FileHandler
 from app import app
 import json
 import os, io
+
+IMAGES_FOLDER = os.path.join(APP_ROOT, 'static\\images')
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     #app.logger.warning("Routes Accessed Success")
@@ -13,12 +19,14 @@ def index():
 @app.route('/generateimage', methods=['GET', 'POST'])
 def generatebutton():
     if flask.request.method == "GET":
-       data = request.get_data()
-       app.logger.warning("generate image data: " + data)
-       imgname = "name"
-       data = jsonify( imgname )
+       #data = request.get_data()
+       text = request.form['inputtext']
+       app.logger.warning("generate image data: " + text)
+       image_path = IMAGES_FOLDER + "\\" 
 
-       return jsonify(imgname)
+
+       image_path = image_path + "output_image"
+       return render_template('template.html', data = image_path)
     return render_template('template.html', title="Artishan")
 
 def serve_pil_image(pil_img):

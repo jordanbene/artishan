@@ -2,6 +2,7 @@ from PIL import Image
 from IPython.display import display
 import torch as th
 import json
+import time 
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
@@ -45,7 +46,7 @@ def show_images(batch: th.Tensor):
     image = Image.fromarray(reshaped.numpy())
     return image
 
-def requestimage():
+def requestimage(target_path):
     createmodel()
     # Sampling parameters
     prompt = "an oil painting of a corgi"
@@ -80,8 +81,16 @@ def requestimage():
             device=device,
         ),
     )
+    img = sample_model(model_kwargs)
 
-    return sample_model(model_kwargs)
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    imgname = "output_image"+timestr+".png"
+    image_path = target_path + '\\' + imgname
+
+    img.save(image_path)
+
+
+    return image_path
 
 # Create a classifier-free guidance sampling function
 def model_fn(x_t, ts, **kwargs):
