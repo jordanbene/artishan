@@ -8,6 +8,7 @@ from app import app
 import json
 import os, io
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 IMAGES_FOLDER = os.path.join(APP_ROOT, 'static\\images')
 
 
@@ -20,7 +21,8 @@ def index():
 def generatebutton():
     if flask.request.method == "GET":
        #data = request.get_data()
-       text = json.dumps( request.form['inputtext'] )
+       #text = json.dumps( request.form['inputtext'] )
+       text =  request.form['inputtext']
 
        app.logger.warning("generate image data: " + text)
        image_path = IMAGES_FOLDER + "\\" 
