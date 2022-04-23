@@ -20,7 +20,8 @@ def index():
 def generatebutton():
     if flask.request.method == "GET":
        #data = request.get_data()
-       text = request.form['inputtext']
+       text = json.dumps( request.form['inputtext'] )
+
        app.logger.warning("generate image data: " + text)
        image_path = IMAGES_FOLDER + "\\" 
 
