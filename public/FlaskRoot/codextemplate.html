@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1> Codex </h1>
+<body>
+
+
+    <div id="mainimage"> <img src="{{ url_for('static', filename='output_image.png') }}" id="myimg" name="img" /></div>
+
+
+
+    <div class='container'>
+
+
+        <h3>Generate</h3>
+        <input type="button" value="Debug" onclick="window.location.href = '{{ url_for( 'postimage') }}';"></input>
+
+        <a href='' id="mybutton"><button class='btn btn-default'>GENERATE</button></a>
+
+
+    </div>
+
+
+
+
+</body>
+<head>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+                $(document).ready(function () {
+                    //initialize after page load
+
+                    $("#mybutton").on("click", function () {
+                        //alert('MyButton Clicked');
+                        event.preventDefault()
+                        $.ajax({
+                            type: 'POST',
+                            url: '/postimage',
+                            dataType: 'text',
+                            success: function (text) {
+                                //alert('MyButton COMPLETE');
+                                text = JSON.parse(text);
+                                console.log("IMAGE GET REQUEST COMPLETE " + text )
+
+                                $('#myimg').attr('src', text);
+                                $('#collectionslist').attr('src', text)
+                            },
+                            error: function (xhr) {
+                                alert('MyButton FAIL');
+                                console.log("ERROR")
+
+                                //Do Something to handle error
+                            }
+                        });
+                    });
+                });
+
+    </script>
+
+</head>
+
+
+{% endblock %}
+
+{% block sidebar %}
+<script type="text/javascript">
+            function SliderEvent(id) {
+
+                $(document).ready(function () {
+                    console.log("F called " + id)
+
+
+                    $("#"+id).change(function () {
+                        console.log("F CHANGED " + id)
+                        event.preventDefault()
+                        var sliderVal = $(this).val();
+
+                        var slider = { _id: sliderVal};
+                        slider[id] = sliderVal;
+                        //alert('MySLIDER ' + sliderVal);
+
+                        PostAjaxSlider(slider)
+                    });
+                });
+            }
+
+            function PostAjaxSlider(data) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/postslider',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    success: function (value) {
+                       console.log("SLIDER REQUEST COMPLETE. Slider val:  " + value)
+                    }
+                });
+            }
+</script>
+
+<script type="text/javascript">
+            SliderEvent("sliderA")
+            SliderEvent("sliderB")
+            SliderEvent("sliderC")
+            SliderEvent("sliderD")
+            SliderEvent("sliderE")
+            SliderEvent("sliderF")
+
+</script>
+
+<form action="postslider" method="post">
+    <h5>Iterations</h5>
+    <input type="range" min={{min}} max={{max}} value={{max}} class="slider" id="sliderA" name="slider">
+    <h5>Angle</h5>
+    <input type="range" min={{min}} max={{max}} value={{1}} class="slider" id="sliderB" name="slider">
+    <h5>Saturation</h5>
+    <input type="range" min={{min}} max={{max}} value={{max}} class="slider" id="sliderC" name="slider">
+    <h5>Brightness</h5>
+    <input type="range" min={{min}} max={{max}} value={{max}} class="slider" id="sliderD" name="slider">
+    <h5>Color Variation</h5>
+    <input type="range" min={{min}} max={{max}} value={{max}} class="slider" id="sliderE" name="slider">
+    <h5>Slider F</h5>
+    <input type="range" min={{min}} max={{max}} value={{max}} class="slider" id="sliderF" name="slider">
+
+
+
+</form>
+{% endblock %}
+

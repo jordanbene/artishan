@@ -4,7 +4,7 @@ from flask import render_template
 from logging import WARNING, FileHandler
 from app import app
 import json
-import os
+import os, io
 @app.route('/', methods=['GET', 'POST'])
 def index():
     #app.logger.warning("Routes Accessed Success")
@@ -12,14 +12,20 @@ def index():
 
 @app.route('/generateimage', methods=['GET', 'POST'])
 def generatebutton():
-    if flask.request.method == "POST":
-
+    if flask.request.method == "GET":
+       
        imgname = ""
        data = imgname
 
 
        #return jsonify(imgname)
     return render_template('template.html', title="Artishan")
+
+def serve_pil_image(pil_img):
+    img_io = io.BytesIO()
+    pil_img.save(img_io, 'JPEG', quality=70)
+    img_io.seek(0)
+    return send_file(img_io, mimetype='image/jpeg')
 
 @app.errorhandler(500)
 def internal_server_error(error):

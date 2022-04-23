@@ -8,7 +8,9 @@
 
 
         <h3>Generate</h3>
-        <a href='' id="mybutton"><button class='btn btn-default'>GENERATE</button></a>
+        <div id="mainimage"> <img src="{{ url_for('static', filename='output_image.png') }}" id="myimg" name="img" /></div>
+
+        <a href='' id="mybutton"><button class='btn btn-default'>Generate</button></a>
 
 
     </div>
@@ -27,16 +29,13 @@
                         //alert('MyButton Clicked');
                         event.preventDefault()
                         $.ajax({
-                            type: 'POST',
+                            type: 'GET',
                             url: '/generateimage',
                             dataType: 'text',
                             success: function (text) {
-                                //alert('MyButton COMPLETE');
+                                alert('MyButton COMPLETE: ' + text);
                                 text = JSON.parse(text);
-                                console.log("IMAGE GET REQUEST COMPLETE " + text )
 
-                                $('#myimg').attr('src', text);
-                                $('#collectionslist').attr('src', text)
                             },
                             error: function (xhr) {
                                 alert('MyButton FAIL');

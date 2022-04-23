@@ -1,6 +1,7 @@
 from PIL import Image
 from IPython.display import display
 import torch as th
+import json
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
@@ -41,7 +42,8 @@ def show_images(batch: th.Tensor):
     """ Display a batch of images inline. """
     scaled = ((batch + 1)*127.5).round().clamp(0,255).to(th.uint8).cpu()
     reshaped = scaled.permute(2, 0, 3, 1).reshape([batch.shape[2], -1, 3])
-    display(Image.fromarray(reshaped.numpy())) #change to json image?
+    image = Image.fromarray(reshaped.numpy())
+    return image
 
 def requestimage():
     createmodel()
@@ -79,7 +81,7 @@ def requestimage():
         ),
     )
 
-    sample_model(model_kwargs)
+    return sample_model(model_kwargs)
 
 # Create a classifier-free guidance sampling function
 def model_fn(x_t, ts, **kwargs):
@@ -105,6 +107,6 @@ def sample_model(kwargs):
         cond_fn=None,
     )[:batch_size]
     model.del_cache()
-    show_images(samples)
+    return show_images(samples)
 
 
