@@ -3,7 +3,7 @@ from IPython.display import display
 import torch as th
 import json
 import time 
-from app import base
+import base
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
