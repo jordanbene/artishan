@@ -24,6 +24,7 @@ batch_size = 1
 guidance_scale = 3.0
 upsample_temp = 0.1
 full_batch_size = batch_size * 2
+createmodel()
 
 def createmodel():
    
@@ -47,7 +48,7 @@ def show_images(batch: th.Tensor):
     return image
 
 def requestimage(prompt_text):
-    createmodel()
+    #createmodel()
     # Sampling parameters
     prompt = "an oil painting of a corgi"
 
@@ -101,7 +102,7 @@ def sample_model(kwargs):
     model.del_cache()
     samples = diffusion.p_sample_loop(
         model_fn,
-        (full_batch_size, 3, options["2"], options["2"]),
+        (full_batch_size, 3, options["image_size"], options["image_size"]),
         device=device,
         clip_denoised=True,
         progress=True,
