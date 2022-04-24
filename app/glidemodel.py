@@ -101,7 +101,7 @@ def sample_model(kwargs):
     model.del_cache()
     samples = diffusion.p_sample_loop(
         model_fn,
-        (full_batch_size, 3, options["image_size"], options["image_size"]),
+        (full_batch_size, 3, options["2"], options["2"]),
         device=device,
         clip_denoised=True,
         progress=True,
