@@ -34,7 +34,7 @@
                         var value = $(inputtext).val();
            
                         $.ajax({
-                            type: 'GET',
+                            type: 'POST',
                             url: '/generateimage',
                             dataType: JSON.stringify({ value }),
                             success: function (text) {

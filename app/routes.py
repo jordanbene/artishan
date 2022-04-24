@@ -19,7 +19,7 @@ def index():
 
 @app.route('/generateimage', methods=['GET', 'POST'])
 def generatebutton():
-    if flask.request.method == "GET":
+    if flask.request.method == "POST":
        #data = request.get_data()
        #text = request.get_json(data)
        app.logger.warning("generate image data PRE ")
