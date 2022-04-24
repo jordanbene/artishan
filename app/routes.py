@@ -23,10 +23,10 @@ def generatebutton():
        #data = request.get_data()
        #text = request.get_json(data)
        app.logger.warning("generate image data PRE ")
+       if 'value' in request.json:
+           value = request.json['value']
 
-       text = json.dumps(request.get_data)
-
-       app.logger.warning("generate image data POST: " + text)
+           app.logger.warning("generate image data POST: " + value)
 
        image_path = IMAGES_FOLDER + "\\" 
        image_path = image_path + "default_image"
