@@ -3,7 +3,6 @@ from IPython.display import display
 import torch as th
 import json
 import time 
-import base
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
@@ -11,6 +10,9 @@ from glide_text2im.model_creation import (
     model_and_diffusion_defaults,
     model_and_diffusion_defaults_upsampler
 )
+
+PATH = "base.pt"
+
 
 # This notebook supports both CPU and GPU.
 # On CPU, generating one sample may take on the order of 20 minutes.
@@ -23,7 +25,7 @@ options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
 #model, diffusion = create_model_and_diffusion(**options)
-model, diffusion = base
+model, diffusion = model.load_state_dict(torch.load(PATH))
 model.eval()
 if has_cuda:
     model.convert_to_fp16()
