@@ -26,7 +26,7 @@ options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
 #model, diffusion = create_model_and_diffusion(**options)
-model, diffusion = th.load(PATH)
+model, diffusion = dataiter.next(th.load(PATH)) 
 model.eval()
 if has_cuda:
     model.convert_to_fp16()
