@@ -8,8 +8,10 @@ from app import app
 import json
 import os, io
 
+from artishan.app import glidemodel
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-IMAGES_FOLDER = os.path.join(APP_ROOT, 'static/images')
+IMAGES_FOLDER = os.path.join(APP_ROOT, 'static/images/')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -25,22 +27,27 @@ def generatebutton():
        app.logger.warning("generate image data PRE ")
        if 'value' in request.json:
            value = request.json['value']
-
            app.logger.warning("generate image data POST: " + value)
 
-       image_path = IMAGES_FOLDER + "/" 
-       image_path = image_path + "default_image.png"
-       
+       image_path = 'static/images/default_image.png" 
+
+       #img = glidemodel.requestimage()
+       #target_path = 'static/images/
+       #image_path = saveimage(target_path, img)
+
        return jsonify(image_path)
     return render_template('template.html', title="Artishan")
-
-def serve_pil_image(pil_img):
-    img_io = io.BytesIO()
-    pil_img.save(img_io, 'JPEG', quality=70)
-    img_io.seek(0)
-    return send_file(img_io, mimetype='image/jpeg')
 
 @app.errorhandler(500)
 def internal_server_error(error):
     # This may pass system errors you do not wish users to see
     return render_template('error.html', error_info=error.args)
+
+def saveimage(target_path, image):
+
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    imgname = "output_image"+timestr+".png"
+    image_path = target_path + '/' + imgname
+    image.save(image_path)
+
+    return image_path

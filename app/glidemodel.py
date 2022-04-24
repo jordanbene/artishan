@@ -46,7 +46,7 @@ def show_images(batch: th.Tensor):
     image = Image.fromarray(reshaped.numpy())
     return image
 
-def requestimage(target_path):
+def requestimage(prompt_text):
     createmodel()
     # Sampling parameters
     prompt = "an oil painting of a corgi"
@@ -83,14 +83,7 @@ def requestimage(target_path):
     )
     img = sample_model(model_kwargs)
 
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    imgname = "output_image"+timestr+".png"
-    image_path = target_path + '/' + imgname
-
-    img.save(image_path)
-
-
-    return image_path
+    return img
 
 # Create a classifier-free guidance sampling function
 def model_fn(x_t, ts, **kwargs):
