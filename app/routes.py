@@ -29,11 +29,11 @@ def generatebutton():
            value = request.json['value']
            app.logger.warning("generate image data POST: " + value)
 
-       image_path = 'static/images/default_image.png'
+       #image_path = 'static/images/default_image.png'
 
-       #img = glidemodel.requestimage(value)
-       #target_path = 'static/images/
-       #image_path = saveimage(target_path, img)
+       img = glidemodel.requestimage(value)
+       target_path = 'static/images/
+       image_path = saveimage(target_path, img)
 
        return jsonify(image_path)
     return render_template('template.html', title="Artishan")
@@ -47,7 +47,7 @@ def saveimage(target_path, image):
 
     timestr = time.strftime("%Y%m%d-%H%M%S")
     imgname = "output_image"+timestr+".png"
-    image_path = target_path + '/' + imgname
+    image_path = target_path +  imgname
     image.save(image_path)
 
     return image_path
