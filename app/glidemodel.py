@@ -3,6 +3,7 @@ from IPython.display import display
 import torch as th
 import json
 import time 
+import os 
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
@@ -10,8 +11,8 @@ from glide_text2im.model_creation import (
     model_and_diffusion_defaults,
     model_and_diffusion_defaults_upsampler
 )
-
-PATH = "base.pt"
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+PATH = os.path.join(APP_ROOT, 'base.pt')
 
 
 # This notebook supports both CPU and GPU.
