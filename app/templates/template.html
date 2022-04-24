@@ -37,8 +37,8 @@
                             type: 'POST',
                             url: '/generateimage',
                             dataType: JSON.stringify({ value }),
-                            success: function (text) {
-                                text = JSON.parse(text);
+                            success: function (value) {
+                                text = JSON.parse(value);
                                 $('#myimg').attr('src', text);
 
                                 alert('MyButton COMPLETE: ' + text);
