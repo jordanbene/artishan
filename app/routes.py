@@ -32,7 +32,7 @@ def generatebutton():
        #image_path = 'static/images/default_image.png'
 
        img = glidemodel.requestimage(value)
-       target_path = 'static/images/
+       target_path = 'static/images/'
        image_path = saveimage(target_path, img)
 
        return jsonify(image_path)
