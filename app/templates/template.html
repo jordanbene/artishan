@@ -36,8 +36,9 @@
                         $.ajax({
                             type: 'POST',
                             url: '/generateimage',
-                   
-                            data: JSON.stringify({ value }),
+                            //contentType: "application/json; charset=utf-8",
+                            //dataType: "json",
+                            datatype: JSON.stringify({ value }),
                             success: function (value) {
                                 text = JSON.parse(value);
                                 $('#myimg').attr('src', text);
