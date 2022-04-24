@@ -40,7 +40,8 @@
                             dataType: "json",
                             data: JSON.stringify({ value }),
                             success: function (value) {
-                                text = JSON.parse(value);
+                                //text = JSON.parse(value);
+                                text = value;
                                 $('#myimg').attr('src', text);
 
                                 alert('MyButton COMPLETE: ' + text);

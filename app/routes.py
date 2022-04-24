@@ -30,7 +30,7 @@ def generatebutton():
 
        image_path = IMAGES_FOLDER + "\\" 
        image_path = image_path + "default_image"
-
+       
        return jsonify(image_path)
     return render_template('template.html', title="Artishan")
 
