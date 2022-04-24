@@ -9,7 +9,7 @@ import json
 import os, io
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-IMAGES_FOLDER = os.path.join(APP_ROOT, 'static//images')
+IMAGES_FOLDER = os.path.join(APP_ROOT, 'static/images')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -28,7 +28,7 @@ def generatebutton():
 
            app.logger.warning("generate image data POST: " + value)
 
-       image_path = IMAGES_FOLDER + "//" 
+       image_path = IMAGES_FOLDER + "/" 
        image_path = image_path + "default_image"
        
        return jsonify(image_path)
