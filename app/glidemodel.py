@@ -18,8 +18,10 @@ has_cuda = th.cuda.is_available()
 device = th.device('cpu' if not has_cuda else 'cuda')
 
 # Create base model.
+options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
+model, diffusion = create_model_and_diffusion(**options)
 
 model.eval()
 if has_cuda:
@@ -28,11 +30,7 @@ model.to(device)
 model.load_state_dict(load_checkpoint('base', device))
 print('total base parameters', sum(x.numel() for x in model.parameters()))
 
-options = model_and_diffusion_defaults()
-options_up = model_and_diffusion_defaults_upsampler()
-model, diffusion = create_model_and_diffusion(**options)
 batch_size = 1
-
 guidance_scale = 3.0
 upsample_temp = 0.1
 full_batch_size = batch_size * 2
