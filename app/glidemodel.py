@@ -85,7 +85,7 @@ def requestimage(target_path):
 
     timestr = time.strftime("%Y%m%d-%H%M%S")
     imgname = "output_image"+timestr+".png"
-    image_path = target_path + '\\' + imgname
+    image_path = target_path + '//' + imgname
 
     img.save(image_path)
 
