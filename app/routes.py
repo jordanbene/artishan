@@ -23,7 +23,7 @@ def generatebutton():
        #data = request.get_data()
        #text = request.get_json(data)
        app.logger.warning("generate image data PRE ")
-       if 'value' in request.json
+       if 'value' in request.json:
            value = request.json['value']
 
            app.logger.warning("generate image data POST: " + value)
