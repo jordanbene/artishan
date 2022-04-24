@@ -24,13 +24,13 @@ def generatebutton():
        #text = request.get_json(data)
        app.logger.warning("generate image data PRE ")
 
-       text = json.dumps(request.json)
+       text = json.dumps(request.get_data)
 
-       app.logger.warning("generate image data: " + text)
+       app.logger.warning("generate image data POST: " + text)
+
        image_path = IMAGES_FOLDER + "\\" 
-
-
        image_path = image_path + "default_image"
+
        return jsonify(image_path)
     return render_template('template.html', title="Artishan")
 
