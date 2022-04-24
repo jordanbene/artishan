@@ -29,9 +29,9 @@ def generatebutton():
            value = request.json['value']
            app.logger.warning("generate image data POST: " + value)
 
-       image_path = 'static/images/default_image.png" 
+       image_path = 'static/images/default_image.png'
 
-       #img = glidemodel.requestimage()
+       #img = glidemodel.requestimage(value)
        #target_path = 'static/images/
        #image_path = saveimage(target_path, img)
 
