@@ -22,6 +22,8 @@ def generatebutton():
     if flask.request.method == "GET":
        #data = request.get_data()
        #text = request.get_json(data)
+       app.logger.warning("generate image data PRE ")
+
        text = json.dumps(request.json)
 
        app.logger.warning("generate image data: " + text)
