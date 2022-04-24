@@ -29,7 +29,7 @@ def generatebutton():
            app.logger.warning("generate image data POST: " + value)
 
        image_path = IMAGES_FOLDER + "/" 
-       image_path = image_path + "default_image"
+       image_path = image_path + "default_image.png"
        
        return jsonify(image_path)
     return render_template('template.html', title="Artishan")
