@@ -34,7 +34,6 @@ model, diffusion = create_model_and_diffusion(**options)
 checkpoint = th.load(PATH)
 name = checkpoint.__class__.__name__
 app.logger.warning("Checkpoint name:  " + name)
-#diffusion = th.load(PATH)
 
 model.eval()
 
