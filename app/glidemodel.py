@@ -27,11 +27,10 @@ options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 model = th.load(PATH)
-#diffusion = th.load(PATH)
-
-model.load_state_dict(load_checkpoint(path, device))
-
 model.eval()
+
+model.load_state_dict(load_checkpoint(PATH, device))
+
 if has_cuda:
     model.convert_to_fp16()
 model.to(device)
