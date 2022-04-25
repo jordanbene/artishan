@@ -44,9 +44,8 @@ def internal_server_error(error):
     return render_template('error.html', error_info=error.args)
 
 def saveimage(target_path, image):
-
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    imgname = "output_image"+timestr+".png"
+    imgname = "output_image"+".png"
     image_path = target_path +  imgname
     image.save(image_path)
 
