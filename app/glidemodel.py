@@ -4,6 +4,7 @@ import torch as th
 import json
 import time 
 import os 
+from logging import WARNING
 
 from glide_text2im.download import load_checkpoint
 from glide_text2im.model_creation import (
@@ -29,7 +30,8 @@ options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 checkpoint = th.load(PATH)
-
+name = checkpoint.__class__.__name__
+app.logger.warning("Checkpoint name:  " + name)
 #diffusion = th.load(PATH)
 
 model.eval()
@@ -39,7 +41,7 @@ if has_cuda:
     model.convert_to_fp16()
 model.to(device)
 #model.load_state_dict(load_checkpoint('localbase', device))
-model.load_state_dict(checkpoint['base'], device)
+model.load_state_dict(checkpoint[name], device)
 
 print('total base parameters', sum(x.numel() for x in model.parameters()))
 
