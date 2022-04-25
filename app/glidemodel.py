@@ -33,7 +33,7 @@ model.eval()
 if has_cuda:
     model.convert_to_fp16()
 model.to(device)
-model.load_state_dict(load_checkpoint(PATH, device))
+model.load_state_dict(load_checkpoint('base', device))
 
 print('total base parameters', sum(x.numel() for x in model.parameters()))
 
