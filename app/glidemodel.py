@@ -10,6 +10,7 @@ from glide_text2im.model_creation import (
     create_model_and_diffusion,
     model_and_diffusion_defaults,
     model_and_diffusion_defaults_upsampler
+    
 )
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(APP_ROOT, 'base.pt')
@@ -26,8 +27,8 @@ options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '25' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
-model = th.load(PATH)
-diffusion = th.load(PATH)
+#model = th.load(PATH)
+#diffusion = th.load(PATH)
 
 model.eval()
 
@@ -35,7 +36,7 @@ model.eval()
 if has_cuda:
     model.convert_to_fp16()
 model.to(device)
-#model.load_state_dict(load_checkpoint(PATH, device))
+model.load_state_dict(load_checkpoint(PATH, device))
 
 print('total base parameters', sum(x.numel() for x in model.parameters()))
 
