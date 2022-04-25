@@ -11,6 +11,7 @@ from glide_text2im.model_creation import (
     model_and_diffusion_defaults,
     model_and_diffusion_defaults_upsampler
     
+    
 )
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(APP_ROOT, 'base.pt')
@@ -38,7 +39,7 @@ if has_cuda:
     model.convert_to_fp16()
 model.to(device)
 #model.load_state_dict(load_checkpoint('localbase', device))
-model.load_state_dict(checkpoint['base'], device)
+model.load_state_dict(checkpoint['sample_model'], device)
 
 print('total base parameters', sum(x.numel() for x in model.parameters()))
 
