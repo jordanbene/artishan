@@ -29,7 +29,7 @@ device = th.device('cpu' if not has_cuda else 'cuda')
 # Create base model.
 options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
-options['timestep_respacing'] = '1' # use 100 diffusion steps for fast sampling
+options['timestep_respacing'] = '3' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 checkpoint = th.load(PATH)
 name = checkpoint.__class__.__name__
@@ -42,7 +42,6 @@ model.eval()
 if has_cuda:
     model.convert_to_fp16()
 model.to(device)
-#model.load_state_dict(load_checkpoint('localbase', device))
 model.load_state_dict(checkpoint, device)
 
 print('total base parameters', sum(x.numel() for x in model.parameters()))
