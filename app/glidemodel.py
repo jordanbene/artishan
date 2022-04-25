@@ -4,6 +4,8 @@ import torch as th
 import json
 import time 
 import os 
+
+from app import app
 from logging import WARNING
 
 from glide_text2im.download import load_checkpoint
