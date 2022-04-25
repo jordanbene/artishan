@@ -43,7 +43,7 @@ if has_cuda:
 model.to(device)
 model.load_state_dict(checkpoint, device)
 
-#print('total base parameters', sum(x.numel() for x in model.parameters()))
+print('total base parameters', sum(x.numel() for x in model.parameters()))
 
 batch_size = 1
 guidance_scale = 3.0
