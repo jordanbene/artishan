@@ -38,9 +38,7 @@ model.to(device)
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
 
-checkpoint = th.load(PATH)
-model.load_state_dict(checkpoint, device)
-model.eval()
+
 
 
 batch_size = 1
@@ -48,9 +46,11 @@ guidance_scale = 3.0
 upsample_temp = 0.1
 full_batch_size = batch_size * 2
 
-#def makemodel():
+def makemodel():
     
-
+    checkpoint = th.load(PATH)
+    model.load_state_dict(checkpoint, device)
+    model.eval()
 
     #print('total base parameters', sum(x.numel() for x in model.parameters()))
     
@@ -65,7 +65,7 @@ def show_images(batch: th.Tensor):
     return image
 
 def requestimage(prompt_text):
-    #makemodel()
+    makemodel()
     # Sampling parameters
     prompt = "Dog"
 
