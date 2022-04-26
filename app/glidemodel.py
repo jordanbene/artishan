@@ -31,24 +31,29 @@ options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
 options['timestep_respacing'] = '3' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
-checkpoint = th.load(PATH)
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
 
-model.eval()
+
+def makemodel():
+    checkpoint = th.load(PATH)
+
+    model.eval()
 
 
-if has_cuda:
-    model.convert_to_fp16()
-model.to(device)
-model.load_state_dict(checkpoint, device)
+    if has_cuda:
+        model.convert_to_fp16()
+    model.to(device)
+    model.load_state_dict(checkpoint, device)
 
-print('total base parameters', sum(x.numel() for x in model.parameters()))
+    print('total base parameters', sum(x.numel() for x in model.parameters()))
 
-batch_size = 1
-guidance_scale = 3.0
-upsample_temp = 0.1
-full_batch_size = batch_size * 2
+    batch_size = 1
+    guidance_scale = 3.0
+    upsample_temp = 0.1
+    full_batch_size = batch_size * 2
+    
+    
 
 
 def show_images(batch: th.Tensor):
@@ -59,7 +64,7 @@ def show_images(batch: th.Tensor):
     return image
 
 def requestimage(prompt_text):
-    #createmodel()
+    makemodel()
     # Sampling parameters
     prompt = "an oil painting of a corgi"
 
