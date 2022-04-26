@@ -32,6 +32,9 @@ options['use_fp16'] = has_cuda
 options['timestep_respacing'] = 'fast27' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 model.eval()
+if has_cuda:
+    model.convert_to_fp16()
+model.to(device)
 
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
@@ -46,17 +49,10 @@ def makemodel():
 
 
 
-    if has_cuda:
-        model.convert_to_fp16()
-    model.to(device)
+  
     model.load_state_dict(checkpoint, device)
 
     #print('total base parameters', sum(x.numel() for x in model.parameters()))
-
-    batch_size = 1
-    guidance_scale = 3.0
-    upsample_temp = 0.1
-    full_batch_size = batch_size * 2
     
     
 
