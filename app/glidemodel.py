@@ -24,7 +24,7 @@ PATH = os.path.join(APP_ROOT, 'base.pt')
 # On CPU, generating one sample may take on the order of 20 minutes.
 # On a GPU, it should be under a minute.
 has_cuda = th.cuda.is_available()
-device = th.device('cpu' if not has_cuda else 'cuda')
+device = th.device('cuda' if not has_cuda else 'cuda')
 
 # Create base model.
 options = model_and_diffusion_defaults()
@@ -52,8 +52,8 @@ def makemodel():
     checkpoint = th.load(PATH)
     model.load_state_dict(checkpoint, device)
     model.eval()
-
-    print('total base parameters', sum(x.numel() for x in model.parameters()))
+    
+    #print('total base parameters', sum(x.numel() for x in model.parameters()))
     
     
 
@@ -67,6 +67,7 @@ def show_images(batch: th.Tensor):
 
 def requestimage(prompt_text):
     makemodel()
+    print("model made")
     # Sampling parameters
     prompt = "Dog"
 
