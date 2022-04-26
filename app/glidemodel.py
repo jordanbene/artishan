@@ -24,7 +24,7 @@ PATH = os.path.join(APP_ROOT, 'base.pt')
 # On CPU, generating one sample may take on the order of 20 minutes.
 # On a GPU, it should be under a minute.
 has_cuda = th.cuda.is_available()
-device = th.device('cuda' if not has_cuda else 'cuda')
+device = th.device('cpu' if not has_cuda else 'cuda')
 
 # Create base model.
 options = model_and_diffusion_defaults()
