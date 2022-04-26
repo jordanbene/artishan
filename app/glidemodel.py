@@ -29,8 +29,10 @@ device = th.device('cpu' if not has_cuda else 'cuda')
 # Create base model.
 options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
-options['timestep_respacing'] = '20' # use 100 diffusion steps for fast sampling
+options['timestep_respacing'] = 'fast27' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
+model.eval()
+
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
 
@@ -42,7 +44,6 @@ full_batch_size = batch_size * 2
 def makemodel():
     checkpoint = th.load(PATH)
 
-    model.eval()
 
 
     if has_cuda:
@@ -50,7 +51,7 @@ def makemodel():
     model.to(device)
     model.load_state_dict(checkpoint, device)
 
-    print('total base parameters', sum(x.numel() for x in model.parameters()))
+    #print('total base parameters', sum(x.numel() for x in model.parameters()))
 
     batch_size = 1
     guidance_scale = 3.0
