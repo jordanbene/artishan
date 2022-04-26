@@ -1,7 +1,5 @@
 import sys, os
 
-#INTERP = os.path.join(os.environ['HOME'], 'dh_nfjxcr','dh_nfjxcr', 'artishan.io', 'opt', 'python-3.8.2', 'bin', 'python3')
-
 INTERP = os.path.join(os.environ['HOME'], 'artishan.io', 'venv', 'bin', 'python3')
 if sys.executable != INTERP:
         os.execl(INTERP, INTERP, *sys.argv)

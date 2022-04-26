@@ -1,4 +1,4 @@
-#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python
 
 from PIL import Image
 import flask
