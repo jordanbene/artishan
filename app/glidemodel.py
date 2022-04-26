@@ -29,7 +29,7 @@ device = th.device('cpu' if not has_cuda else 'cuda')
 # Create base model.
 options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
-options['timestep_respacing'] = 'fast27' # use 100 diffusion steps for fast sampling
+options['timestep_respacing'] = 'fast2' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 model.eval()
 if has_cuda:
