@@ -38,20 +38,18 @@ model.to(device)
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
 
+checkpoint = th.load(PATH)
+model.load_state_dict(checkpoint, device)
+model.eval()
+
+
 batch_size = 1
 guidance_scale = 3.0
 upsample_temp = 0.1
 full_batch_size = batch_size * 2
 
 def makemodel():
-    checkpoint = th.load(PATH)
-
-
-
-  
-    #model.load_state_dict(checkpoint, device)
-    model.load_state_dict(checkpoint)
-    model.eval()
+    
 
 
     #print('total base parameters', sum(x.numel() for x in model.parameters()))
