@@ -29,7 +29,7 @@ device = th.device('cpu' if not has_cuda else 'cuda')
 # Create base model.
 options = model_and_diffusion_defaults()
 options['use_fp16'] = has_cuda
-options['timestep_respacing'] = '3' # use 100 diffusion steps for fast sampling
+options['timestep_respacing'] = '20' # use 100 diffusion steps for fast sampling
 model, diffusion = create_model_and_diffusion(**options)
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
@@ -70,7 +70,7 @@ def show_images(batch: th.Tensor):
 def requestimage(prompt_text):
     makemodel()
     # Sampling parameters
-    prompt = prompt_text
+    prompt = "Dog"
 
     # Tune this parameter to control the sharpness of 256x256 images.
     # A value of 1.0 is sharper, but sometimes results in grainy artifacts.
