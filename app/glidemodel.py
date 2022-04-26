@@ -51,7 +51,7 @@ def makemodel():
 
   
     #model.load_state_dict(checkpoint, device)
-    model.load_state_dict(load_checkpoint('base', device))
+    model.load_state_dict(load_checkpoint(checkpoint, device))
 
 
     #print('total base parameters', sum(x.numel() for x in model.parameters()))
