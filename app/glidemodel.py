@@ -34,6 +34,10 @@ model, diffusion = create_model_and_diffusion(**options)
 #name = checkpoint.__class__.__name__
 #app.logger.warning("Checkpoint name:  " + name)
 
+batch_size = 1
+guidance_scale = 3.0
+upsample_temp = 0.1
+full_batch_size = batch_size * 2
 
 def makemodel():
     checkpoint = th.load(PATH)
@@ -66,7 +70,7 @@ def show_images(batch: th.Tensor):
 def requestimage(prompt_text):
     makemodel()
     # Sampling parameters
-    prompt = "an oil painting of a corgi"
+    prompt = prompt_text
 
     # Tune this parameter to control the sharpness of 256x256 images.
     # A value of 1.0 is sharper, but sometimes results in grainy artifacts.
