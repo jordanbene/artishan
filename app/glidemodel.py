@@ -65,7 +65,7 @@ def show_images(batch: th.Tensor):
     return image
 
 def requestimage(prompt_text):
-    makemodel()
+    #makemodel()
     # Sampling parameters
     prompt = "Dog"
 
