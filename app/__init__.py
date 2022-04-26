@@ -1,4 +1,4 @@
-#!/home/dh_nfjxcr/artishan.io/venv/bin/python
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 from flask import Flask
 from logging import WARNING, FileHandler
 
