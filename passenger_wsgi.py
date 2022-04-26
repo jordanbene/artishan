@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 import sys, os
 
 
