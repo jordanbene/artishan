@@ -48,7 +48,7 @@ guidance_scale = 3.0
 upsample_temp = 0.1
 full_batch_size = batch_size * 2
 
-def makemodel():
+#def makemodel():
     
 
 
