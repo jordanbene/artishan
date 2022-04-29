@@ -13,6 +13,6 @@ file_handler.setLevel(WARNING)
 app.logger.addHandler(file_handler)
 #
 
-app.debug = False
+app.debug = True
 
 
