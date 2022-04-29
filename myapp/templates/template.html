@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<body>
+    <div class='container'>
+
+
+        <h3> NFT Generator </h3>
+        <div id="mainimage"> <img src="{{ url_for('static', filename='images/default_image.png') }}" id="myimg" name="img" /></div>
+
+        <input type="text" id="inputtext" name="inputtext">
+
+
+        <a href='' id="mybutton"><button class='btn btn-default'>Generate</button></a>
+
+
+    </div>
+</body>
+
+
+<head>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+                $(document).ready(function () {
+                    //initialize after page load
+
+                    $("#mybutton").on("click", function () {
+                        //alert('MyButton Clicked');
+                        event.preventDefault()
+                        var value = $(inputtext).val();
+           
+                        $.ajax({
+                            type: 'POST',
+                            url: '/generateimage',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify({ value }),
+                            success: function (value) {
+                                text = value;
+                                $('#myimg').attr('src', text);
+
+                                alert('MyButton COMPLETE: ' + text);
+
+                            },
+                            error: function (xhr) {
+                                alert('MyButton FAIL');
+                                console.log("ERROR")
+
+                                //Do Something to handle error
+                            }
+                        });
+                    });
+                });
+
+    </script>
+
+</head>
+{% endblock %}
+
+{% block sidebar %}
+<h3> Test Template </h3>
+
+{% endblock %}
