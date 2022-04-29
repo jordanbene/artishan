@@ -7,7 +7,7 @@ if sys.executable != INTERP:
 sys.path.append(os.getcwd())
 
 #sys.path.append('home/artishan.io/myapp')
-sys.path.append(os.environ['HOME'], 'artishan.io', 'myapp')
+sys.path.append(os.path.join(os.environ['HOME'], 'artishan.io', 'myapp'))
 
 #sys.path.append('myapp')
 from myapp import app as application
