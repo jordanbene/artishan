@@ -9,7 +9,7 @@ from app import app
 import json
 import os, io
 import time
-import glidemodel
+from app import glidemodel
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 IMAGES_FOLDER = os.path.join(APP_ROOT, 'static/images/')
