@@ -1,3 +1,4 @@
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 import sys, os
 
 INTERP = os.path.join(os.environ['HOME'], 'artishan.io', 'venv', 'bin', 'python3')

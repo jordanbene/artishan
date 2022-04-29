@@ -1,3 +1,4 @@
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 
 from types import NoneType
 from typing import DefaultDict

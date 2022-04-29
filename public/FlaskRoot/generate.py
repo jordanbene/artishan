@@ -1,3 +1,4 @@
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 from PIL import Image, ImageDraw, ImageOps
 from PIL.ImageColor import colormap
 import random
