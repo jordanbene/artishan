@@ -6,7 +6,7 @@ import json
 import time 
 import os 
 
-from app.appmain import app
+from appmain import app
 from logging import WARNING
 
 from glide_text2im.download import load_checkpoint
