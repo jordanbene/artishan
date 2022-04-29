@@ -1,4 +1,3 @@
-#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 
 from PIL import Image
 import flask
