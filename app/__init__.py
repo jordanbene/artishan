@@ -1,8 +1,5 @@
 #!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 
-print("Content-type: text/html\n\n")
-print("Hello World!")
-
 from flask import Flask
 from logging import WARNING, FileHandler
 
