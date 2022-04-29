@@ -1,2 +1,2 @@
-from myapp import app as app
+from . import app as app
 print("Test!")

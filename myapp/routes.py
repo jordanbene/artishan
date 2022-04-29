@@ -5,7 +5,7 @@ import flask
 from flask import Flask, render_template, send_file, url_for, jsonify, request, Request, Response, make_response, send_from_directory, flash
 from flask import render_template
 from logging import WARNING, FileHandler
-from app import app
+from . import app
 import json
 import os, io
 import time

@@ -5,7 +5,7 @@ from logging import WARNING, FileHandler
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
-from myapp import routes
+from . import routes
 
 #error log
 file_handler = FileHandler('apperrorlog.txt')

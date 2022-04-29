@@ -5,7 +5,7 @@ from flask import render_template
 import sys, os
 import glidemodel
 from werkzeug.exceptions import HTTPException
-from myapp import app as app
+from . import app as app
 
 
 
