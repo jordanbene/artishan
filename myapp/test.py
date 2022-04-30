@@ -1,4 +1,4 @@
-#!/home/dh_nfjxcr/opt/python-3.8.2/bin/python3
+#!/home/dh_nfjxcr/artishan.io/venv/bin/python3
 import sys
 
 print(sys.executable)
