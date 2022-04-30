@@ -1,1 +1,1 @@
-export PATH=$HOME/opt/python-3.8.2/bin:$PATH
+export PATH=$HOME/artishan.io/venv/bin/python3:$PATH
